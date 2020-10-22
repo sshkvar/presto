@@ -14,6 +14,7 @@
 package io.prestosql.plugin.iceberg;
 
 import io.airlift.configuration.Config;
+import io.airlift.configuration.ConfigDescription;
 import io.prestosql.plugin.hive.HiveCompressionCodec;
 import org.apache.iceberg.FileFormat;
 
@@ -26,6 +27,7 @@ public class IcebergConfig
 {
     private IcebergFileFormat fileFormat = ORC;
     private HiveCompressionCodec compressionCodec = GZIP;
+    private boolean uniqueTableLocation = false;
 
     @NotNull
     public FileFormat getFileFormat()
@@ -50,6 +52,18 @@ public class IcebergConfig
     public IcebergConfig setCompressionCodec(HiveCompressionCodec compressionCodec)
     {
         this.compressionCodec = compressionCodec;
+        return this;
+    }
+
+    @NotNull
+    public boolean isUniqueTableLocation() {
+        return uniqueTableLocation;
+    }
+
+    @Config("iceberg.unique-table-location")
+    @ConfigDescription("If true UUID will be added to the table location")
+    public IcebergConfig setUniqueTableLocation(boolean uniqueTableLocation) {
+        this.uniqueTableLocation = uniqueTableLocation;
         return this;
     }
 }
