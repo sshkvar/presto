@@ -22,7 +22,6 @@ import io.prestosql.plugin.hive.HiveConfig;
 import io.prestosql.plugin.hive.HiveHdfsModule;
 import io.prestosql.plugin.hive.HiveNodePartitioningProvider;
 import io.prestosql.plugin.hive.metastore.MetastoreConfig;
-import io.prestosql.plugin.hive.metastore.thrift.ThriftMetastoreConfig;
 import io.prestosql.plugin.hive.orc.OrcReaderConfig;
 import io.prestosql.plugin.hive.orc.OrcWriterConfig;
 import io.prestosql.plugin.hive.parquet.ParquetReaderConfig;
@@ -51,7 +50,6 @@ public class IcebergModule
         configBinder(binder).bindConfig(HiveConfig.class);
         configBinder(binder).bindConfig(IcebergConfig.class);
         configBinder(binder).bindConfig(MetastoreConfig.class);
-        configBinder(binder).bindConfig(ThriftMetastoreConfig.class);
 
         binder.bind(IcebergSessionProperties.class).in(Scopes.SINGLETON);
         binder.bind(IcebergTableProperties.class).in(Scopes.SINGLETON);

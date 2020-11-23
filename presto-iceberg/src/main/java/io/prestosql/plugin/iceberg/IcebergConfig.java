@@ -27,7 +27,7 @@ public class IcebergConfig
 {
     private IcebergFileFormat fileFormat = ORC;
     private HiveCompressionCodec compressionCodec = GZIP;
-    private boolean uniqueTableLocation = false;
+    private boolean uniqueTableLocation;
 
     @NotNull
     public FileFormat getFileFormat()
@@ -56,13 +56,15 @@ public class IcebergConfig
     }
 
     @NotNull
-    public boolean isUniqueTableLocation() {
+    public boolean isUniqueTableLocation()
+    {
         return uniqueTableLocation;
     }
 
     @Config("iceberg.unique-table-location")
     @ConfigDescription("If true UUID will be added to the table location")
-    public IcebergConfig setUniqueTableLocation(boolean uniqueTableLocation) {
+    public IcebergConfig setUniqueTableLocation(boolean uniqueTableLocation)
+    {
         this.uniqueTableLocation = uniqueTableLocation;
         return this;
     }
