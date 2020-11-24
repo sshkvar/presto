@@ -45,7 +45,8 @@ public class IcebergMetadataFactory
             HiveMetastore metastore,
             HdfsEnvironment hdfsEnvironment,
             TypeManager typeManager,
-            JsonCodec<CommitTaskData> commitTaskCodec, boolean useUniqueTableLocation)
+            JsonCodec<CommitTaskData> commitTaskCodec,
+            boolean useUniqueTableLocation)
     {
         this.metastore = requireNonNull(metastore, "metastore is null");
         this.hdfsEnvironment = requireNonNull(hdfsEnvironment, "hdfsEnvironment is null");

@@ -397,7 +397,7 @@ public class IcebergMetadata
         HiveIdentity identity = new HiveIdentity(session);
         String targetPath = getTableLocation(tableMetadata.getProperties());
         if (targetPath == null) {
-            String uniqueTableName = useUniqueTableLocation ? String.format("%s_%s", tableName, UUID.randomUUID()) : tableName;
+            String uniqueTableName = useUniqueTableLocation ? generateUniqueTableName(tableName) : tableName;
             targetPath = getTableDefaultLocation(database, hdfsContext, hdfsEnvironment, schemaName, uniqueTableName).toString();
         }
 
@@ -700,5 +700,10 @@ public class IcebergMetadata
         return snapshotIds.computeIfAbsent(table.toString(), ignored -> snapshotId
                 .map(id -> IcebergUtil.resolveSnapshotId(table, id))
                 .or(() -> Optional.ofNullable(table.currentSnapshot()).map(Snapshot::snapshotId)));
+    }
+
+    private String generateUniqueTableName(String tableName)
+    {
+        return String.format("%s-%s", tableName, UUID.randomUUID().toString().replace("-", ""));
     }
 }

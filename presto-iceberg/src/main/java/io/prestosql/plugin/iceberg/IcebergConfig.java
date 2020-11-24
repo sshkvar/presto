@@ -55,14 +55,13 @@ public class IcebergConfig
         return this;
     }
 
-    @NotNull
     public boolean isUniqueTableLocation()
     {
         return uniqueTableLocation;
     }
 
     @Config("iceberg.unique-table-location")
-    @ConfigDescription("If true UUID will be added to the table location")
+    @ConfigDescription("Include UUID in the table location")
     public IcebergConfig setUniqueTableLocation(boolean uniqueTableLocation)
     {
         this.uniqueTableLocation = uniqueTableLocation;
